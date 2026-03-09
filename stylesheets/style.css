@@ -1,0 +1,17 @@
+@import url(./title.css);
+
+:root {
+    --cube-yellow: yellow;
+    --cube-red: red;
+    --cube-orange: orange;
+    --cube-white: white;
+    --cube-green: green;
+    --cube-blue: blue;
+
+    font-family: sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
