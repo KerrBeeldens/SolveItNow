@@ -2,6 +2,24 @@
 header {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  /* default: two columns */
+  gap: 16px;
+
+  & * {
+    transform-style: preserve-3d;
+  }
+}
+
+/* Switch to two rows when aspect ratio < 1 (portrait) */
+@media (max-aspect-ratio: 1/1) {
+  header {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  header>div:nth-child(1) {
+    justify-content: center;
+  }
 }
 
 /* Title section */
@@ -42,57 +60,52 @@ header {
   }
 }
 
-header > div {
+header>div {
   --cube-width: 8vw;
   --cube-height: var(--cube-width);
   --cube-depth: var(--cube-width);
 
   /* TODO EDIT */
-  /* Large perspective to mimic orthographic view */
-  perspective: 99999999px;
   display: flex;
   position: relative;
   justify-content: flex-end;
   align-items: center;
   height: 100vh;
 
-  & * {
-    transform-style: preserve-3d;
-  }
+  &>div {
 
-  & > div {
     /* "SOLVE" cubes group */
     &:nth-child(1) {
       --animation-name: rotation-solve;
       --animation-duration: 1s;
-      --y: -1.75;
+      --y: -1.5;
 
       /* "S" Cube */
-      & > div:nth-child(1) {
+      &>div:nth-child(1) {
         --initial-rotation: 0deg;
         --x: -4.5;
       }
 
       /* "O" Cube */
-      & > div:nth-child(2) {
+      &>div:nth-child(2) {
         --initial-rotation: 180deg;
         --x: -3.5;
       }
 
       /* "L" Cube */
-      & > div:nth-child(3) {
+      &>div:nth-child(3) {
         --initial-rotation: 90deg;
         --x: -2.5;
       }
 
       /* "V" Cube */
-      & > div:nth-child(4) {
+      &>div:nth-child(4) {
         --initial-rotation: 270deg;
         --x: -1.5;
       }
 
       /* "E" Cube */
-      & > div:nth-child(5) {
+      &>div:nth-child(5) {
         --initial-rotation: 90deg;
         --x: -0.5;
       }
@@ -105,13 +118,13 @@ header > div {
       --y: 0;
 
       /* "I" Cube */
-      & > div:nth-child(1) {
+      &>div:nth-child(1) {
         --initial-rotation: 0deg;
         --x: -1.5;
       }
 
       /* "T" Cube */
-      & > div:nth-child(2) {
+      &>div:nth-child(2) {
         --initial-rotation: 180deg;
         --x: -0.5;
       }
@@ -121,32 +134,30 @@ header > div {
     &:nth-child(3) {
       --animation-name: rotation-now;
       --animation-duration: 3s;
-      --y: 1.75;
+      --y: 1.5;
 
       /* "N" Cube */
-      & > div:nth-child(1) {
-        --initial-rotation: 270deg;
+      &>div:nth-child(1) {
+        --initial-rotation: 180deg;
         --x: -2.5;
       }
 
       /* "O" Cube */
-      & > div:nth-child(2) {
+      &>div:nth-child(2) {
         --initial-rotation: 90deg;
         --x: -1.5;
       }
 
       /* "W" Cube */
-      & > div:nth-child(3) {
-        --initial-rotation: 0deg;
+      &>div:nth-child(3) {
+        --initial-rotation: 270deg;
         --x: -0.5;
       }
     }
 
     /* All Cubes */
-    & > div {
-      transform: translateX(calc(var(--cube-width) * var(--x)))
-        translateY(calc(var(--cube-height) * var(--y)))
-        rotateX(var(--x-rotation)) rotateX(var(--initial-rotation, 0deg));
+    &>div {
+      transform: translateX(calc(var(--cube-width) * var(--x))) translateY(calc(var(--cube-height) * var(--y))) rotateX(var(--x-rotation)) rotateX(var(--initial-rotation, 0deg));
 
       /* Even cubes */
       &:nth-of-type(even) {
@@ -155,14 +166,13 @@ header > div {
 
       /* Odd cubes */
       &:nth-of-type(odd) {
-        animation: var(--animation-name) reverse var(--animation-duration)
-          ease-in;
+        animation: var(--animation-name) reverse var(--animation-duration) ease-in;
       }
 
       /* All faces */
-      & > div {
+      &>div {
         position: absolute;
-        box-shadow: inset 0 0 0 2px black;
+        box-shadow: inset 0 0 0 4px black;
         width: var(--cube-width);
         height: var(--cube-height);
         display: flex;
@@ -175,51 +185,462 @@ header > div {
         /* Front faces */
         &:nth-child(1) {
           background-color: var(--cube-yellow);
-          transform: translateX(calc(var(--cube-width) / -2))
-            translateY(calc(var(--cube-height) / -2))
-            translateZ(calc(var(--cube-depth) / 2));
+          transform: translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--cube-depth) / 2));
         }
 
         /* Back faces */
         &:nth-child(2) {
           background-color: var(--cube-red);
-          transform: translateX(calc(var(--cube-width) / -2))
-            translateZ(calc(var(--cube-depth) / -2))
-            translateY(calc(var(--cube-height) / -2)) rotateX(180deg);
+          transform: translateX(calc(var(--cube-width) / -2)) translateZ(calc(var(--cube-depth) / -2)) translateY(calc(var(--cube-height) / -2)) rotateX(180deg);
         }
 
         /* Top faces */
         &:nth-child(3) {
           background: var(--cube-orange);
-          transform: translateX(calc(var(--cube-width) / -2))
-            translateY(calc(var(--cube-height) / -2)) rotateX(90deg)
-            translateZ(calc(var(--cube-height) / 2));
+          transform: translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--cube-height) / -2)) rotateX(90deg) translateZ(calc(var(--cube-height) / 2));
         }
 
         /* Bottom faces */
         &:nth-child(4) {
           background: var(--cube-white);
-          transform: translateX(calc(var(--cube-width) / -2))
-            translateY(calc(var(--cube-height) / -2)) rotateX(90deg)
-            translateZ(calc(var(--cube-height) / -2)) rotateX(180deg);
+          transform: translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--cube-height) / -2)) rotateX(90deg) translateZ(calc(var(--cube-height) / -2)) rotateX(180deg);
         }
 
         /* Right faces */
         &:nth-child(5) {
           background: var(--cube-green);
-          transform: translateX(calc(var(--cube-width) / -2)) rotateY(90deg)
-            translateZ(calc(var(--cube-width) / 2))
-            translateY(calc(var(--cube-height) / -2));
+          transform: translateX(calc(var(--cube-width) / -2)) rotateY(90deg) translateZ(calc(var(--cube-width) / 2)) translateY(calc(var(--cube-height) / -2));
         }
 
         /* Left faces */
         &:nth-child(6) {
           background: var(--cube-blue);
-          transform: translateX(calc(var(--cube-width) / -2)) rotateY(90deg)
-            translateZ(calc(var(--cube-width) / -2))
-            translateY(calc(var(--cube-height) / -2));
+          transform: translateX(calc(var(--cube-width) / -2)) rotateY(90deg) translateZ(calc(var(--cube-width) / -2)) translateY(calc(var(--cube-height) / -2));
         }
       }
     }
+  }
+}
+
+
+@property --step-000 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --step-001 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --step-002 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --step-003 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --step-004 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --step-005 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --step-006 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --step-007 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --step-008 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --step-009 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --step-010 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --step-011 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --step-012 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --step-013 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --step-014 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --step-015 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+
+@property --step-016 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --step-017 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --step-018 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --step-019 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --step-020 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes text-pulse {
+  0% {
+    scale: 1;
+  }
+
+  50% {
+    scale: 1.2;
+  }
+
+  100% {
+    scale: 1;
+  }
+}
+
+header>nav {
+  --cube-width: calc(8vw * 1.35);
+  --cube-height: var(--cube-width);
+  --cube-depth: var(--cube-width);
+
+  /* TODO EDIT */
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+
+  /* All Cublets */
+  &>div>div {
+    position: absolute;
+    width: var(--cube-width);
+    height: var(--cube-height);
+    transition: transform 0.3s;
+  }
+
+  &>div>div {
+
+    /* All faces */
+    &>div {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      box-shadow: inset 0 0 0 4px black;
+    }
+
+    /* Front faces */
+    &>div:nth-child(1) {
+      background: black;
+      transform: translateZ(calc(var(--cube-depth) / 2));
+    }
+
+    &[style*="--z:1"]>div:nth-child(1) {
+      background-color: var(--cube-red);
+      font-size: calc(var(--cube-width) * 0.125);
+
+      &:not(:has(a)):hover {
+        background-color: color-mix(in srgb, var(--cube-red) 50%, white);
+
+        & label>span {
+          animation: text-pulse 1s ease-in-out infinite;
+        }
+      }
+
+      &:has(a):hover {
+        background-color: color-mix(in srgb, var(--cube-blue) 50%, white);
+
+        & a {
+          animation: text-pulse 1s ease-in-out infinite;
+        }
+      }
+
+
+      /* Level select */
+      & label {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+
+        & span {
+          font-size: calc(var(--cube-width) * 0.6);
+        }
+
+        & input {
+          display: none;
+        }
+      }
+
+      /* Credits ("Made by Kerr") */
+      & a {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        color: black;
+        font-size: calc(var(--cube-width) * 0.3);
+
+        & span {
+          font-size: calc(var(--cube-width) * 0.125);
+        }
+      }
+    }
+
+
+
+    /* Back faces*/
+    &>div:nth-child(2) {
+      background: black;
+      transform: translateZ(calc(var(--cube-depth) / -2));
+    }
+
+    &[style*="--z:-1"]>div:nth-child(2) {
+      background: var(--cube-blue);
+    }
+
+    /* Top faces */
+    &>div:nth-child(3) {
+      background: black;
+      transform: rotateX(90deg) translateZ(calc(var(--cube-height) / 2));
+    }
+
+    &[style*="--y:-1"]>div:nth-child(3) {
+      background: var(--cube-yellow);
+    }
+
+    /* Bottom faces */
+    &>div:nth-child(4) {
+      background: black;
+      transform: rotateX(90deg) translateZ(calc(var(--cube-height) / -2));
+    }
+
+    &[style*="--y:1"]>div:nth-child(4) {
+      background: var(--cube-green);
+    }
+
+    /* Right faces */
+    &>div:nth-child(5) {
+      background: black;
+      transform: rotateY(90deg) translateZ(calc(var(--cube-width) / 2));
+    }
+
+    &[style*="--x:1"]>div:nth-child(5) {
+      background: var(--cube-orange);
+    }
+
+    /* Left faces */
+    &>div:nth-child(6) {
+      background: black;
+      transform: rotateY(90deg) translateZ(calc(var(--cube-width) / -2));
+    }
+
+    &[style*="--x:-1"]>div:nth-child(6) {
+      background: var(--cube-white);
+    }
+  }
+
+  &>div:nth-of-type(1)>div {
+    transform:
+      rotateX(calc(var(--step-000) * 1)) rotateY(calc(var(--step-001) * -1)) rotateY(calc(var(--step-009) * 2)) rotateZ(calc(var(--step-010) * 1)) rotateY(calc(var(--step-013) * -2)) rotateX(calc(var(--step-014) * -2)) rotateY(calc(var(--step-015) * 2)) rotateZ(calc(var(--step-016) * -1)) rotateX(calc(var(--step-019) * 1)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(2)>div {
+    transform:
+      rotateZ(calc(var(--step-001) * -1)) rotateY(calc(var(--step-005) * 1)) rotateY(calc(var(--step-007) * -1)) rotateZ(calc(var(--step-009) * 2)) rotateY(calc(var(--step-016) * -1)) rotateZ(calc(var(--step-019) * 1)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(3)>div {
+    transform:
+      rotateZ(calc(var(--step-001) * -1)) rotateX(calc(var(--step-002) * 1)) rotateX(calc(var(--step-004) * -2)) rotateZ(calc(var(--step-005) * 1)) rotateZ(calc(var(--step-007) * -1)) rotateY(calc(var(--step-008) * -2)) rotateY(calc(var(--step-011) * -2)) rotateX(calc(var(--step-012) * -2)) rotateX(calc(var(--step-015) * -2)) rotateY(calc(var(--step-017) * -2)) rotateX(calc(var(--step-019) * -1)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(4)>div {
+    transform:
+      rotateX(calc(var(--step-000) * 1)) rotateY(calc(var(--step-001) * -1)) rotateY(calc(var(--step-009) * 2)) rotateX(calc(var(--step-012) * 2)) rotateY(calc(var(--step-014) * -2)) rotateY(calc(var(--step-017) * -2)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(5)>div {
+    transform:
+      rotateY(calc(var(--step-002) * -1)) rotateY(calc(var(--step-004) * 2)) rotateY(calc(var(--step-012) * 2)) rotateY(calc(var(--step-015) * 2)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(6)>div {
+    transform:
+      rotateY(calc(var(--step-002) * -1)) rotateX(calc(var(--step-003) * 2)) rotateX(calc(var(--step-006) * 1)) rotateY(calc(var(--step-007) * -1)) rotateY(calc(var(--step-010) * 1)) rotateX(calc(var(--step-011) * 2)) rotateX(calc(var(--step-014) * 2)) rotateX(calc(var(--step-017) * 2)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(7)>div {
+    transform:
+      rotateX(calc(var(--step-000) * 1)) rotateY(calc(var(--step-001) * -1)) rotateZ(calc(var(--step-005) * -1)) rotateX(calc(var(--step-006) * -1)) rotateY(calc(var(--step-007) * -1)) rotateZ(calc(var(--step-008) * 2)) rotateZ(calc(var(--step-011) * 2)) rotateX(calc(var(--step-013) * -2)) rotateY(calc(var(--step-016) * -1)) rotateX(calc(var(--step-017) * -2)) rotateY(calc(var(--step-018) * -1)) rotateX(calc(var(--step-019) * 1)) rotateY(calc(var(--step-020) * -1)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(8)>div {
+    transform:
+      rotateY(calc(var(--step-002) * -1)) rotateY(calc(var(--step-004) * 2)) rotateY(calc(var(--step-012) * 2)) rotateY(calc(var(--step-015) * 2)) rotateZ(calc(var(--step-016) * 1)) rotateY(calc(var(--step-020) * -1)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(9)>div {
+    transform:
+      rotateY(calc(var(--step-002) * -1)) rotateX(calc(var(--step-003) * 2)) rotateX(calc(var(--step-006) * 1)) rotateY(calc(var(--step-007) * -1)) rotateZ(calc(var(--step-009) * -2)) rotateX(calc(var(--step-012) * -2)) rotateZ(calc(var(--step-014) * 2)) rotateY(calc(var(--step-016) * -1)) rotateX(calc(var(--step-017) * 2)) rotateY(calc(var(--step-018) * -1)) rotateX(calc(var(--step-019) * -1)) rotateY(calc(var(--step-020) * -1)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(10)>div {
+    transform:
+      rotateX(calc(var(--step-000) * 1)) rotateX(calc(var(--step-005) * 1)) rotateZ(calc(var(--step-006) * -1)) rotateZ(calc(var(--step-008) * -2)) rotateZ(calc(var(--step-011) * -2)) rotateX(calc(var(--step-012) * 2)) rotateX(calc(var(--step-015) * 2)) rotateZ(calc(var(--step-017) * -2)) rotateX(calc(var(--step-019) * 1)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(11)>div {
+    transform:
+      rotateZ(calc(var(--step-001) * -1)) rotateZ(calc(var(--step-009) * 2)) rotateZ(calc(var(--step-020) * -1)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(12)>div {
+    transform:
+      rotateZ(calc(var(--step-001) * -1)) rotateX(calc(var(--step-002) * 1)) rotateX(calc(var(--step-004) * -2)) rotateZ(calc(var(--step-005) * 1)) rotateZ(calc(var(--step-007) * -1)) rotateZ(calc(var(--step-010) * 1)) rotateZ(calc(var(--step-018) * -1)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(13)>div {
+    transform:
+      rotateX(calc(var(--step-000) * 1)) rotateX(calc(var(--step-005) * 1)) rotateX(calc(var(--step-007) * -1)) rotateX(calc(var(--step-010) * 1)) rotateX(calc(var(--step-018) * -1)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(14)>div {
+    transform:
+      translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(15)>div {
+    transform:
+      rotateX(calc(var(--step-016) * 1)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(16)>div {
+    transform:
+      rotateX(calc(var(--step-000) * 1)) rotateZ(calc(var(--step-002) * 1)) rotateZ(calc(var(--step-004) * -2)) rotateX(calc(var(--step-006) * -1)) rotateX(calc(var(--step-008) * -2)) rotateZ(calc(var(--step-010) * -1)) rotateX(calc(var(--step-012) * 2)) rotateX(calc(var(--step-015) * 2)) rotateZ(calc(var(--step-018) * 1)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(17)>div {
+    transform:
+      rotateZ(calc(var(--step-003) * 2)) rotateZ(calc(var(--step-006) * 1)) rotateZ(calc(var(--step-008) * 2)) rotateZ(calc(var(--step-011) * 2)) rotateZ(calc(var(--step-014) * 2)) rotateZ(calc(var(--step-017) * 2)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(18)>div {
+    transform:
+      rotateZ(calc(var(--step-003) * 2)) rotateX(calc(var(--step-005) * -1)) rotateX(calc(var(--step-007) * 1)) rotateZ(calc(var(--step-008) * 2)) rotateZ(calc(var(--step-011) * 2)) rotateZ(calc(var(--step-014) * 2)) rotateX(calc(var(--step-016) * 1)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(19)>div {
+    transform:
+      rotateX(calc(var(--step-000) * 1)) rotateY(calc(var(--step-003) * 2)) rotateZ(calc(var(--step-004) * 2)) rotateX(calc(var(--step-005) * 1)) rotateX(calc(var(--step-007) * -1)) rotateY(calc(var(--step-009) * -2)) rotateZ(calc(var(--step-013) * -2)) rotateY(calc(var(--step-014) * 2)) rotateZ(calc(var(--step-015) * 2)) rotateX(calc(var(--step-018) * -1)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(20)>div {
+    transform:
+      rotateZ(calc(var(--step-001) * -1)) rotateZ(calc(var(--step-009) * 2)) rotateY(calc(var(--step-010) * -1)) rotateZ(calc(var(--step-013) * -2)) rotateY(calc(var(--step-016) * 1)) rotateZ(calc(var(--step-017) * -2)) rotateY(calc(var(--step-018) * 1)) rotateZ(calc(var(--step-019) * 1)) rotateY(calc(var(--step-020) * 1)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(21)>div {
+    transform:
+      rotateZ(calc(var(--step-001) * -1)) rotateX(calc(var(--step-002) * 1)) rotateY(calc(var(--step-003) * 2)) rotateZ(calc(var(--step-005) * 1)) rotateX(calc(var(--step-006) * 1)) rotateX(calc(var(--step-008) * 2)) rotateY(calc(var(--step-010) * -1)) rotateZ(calc(var(--step-011) * -2)) rotateX(calc(var(--step-013) * 2)) rotateY(calc(var(--step-018) * 1)) rotateX(calc(var(--step-020) * 1)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(22)>div {
+    transform:
+      rotateX(calc(var(--step-000) * 1)) rotateY(calc(var(--step-003) * 2)) rotateY(calc(var(--step-006) * 1)) rotateY(calc(var(--step-008) * 2)) rotateY(calc(var(--step-011) * 2)) rotateX(calc(var(--step-013) * -2)) rotateX(calc(var(--step-019) * 1)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(23)>div {
+    transform:
+      rotateY(calc(var(--step-013) * 2)) rotateY(calc(var(--step-019) * -1)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(24)>div {
+    transform:
+      rotateY(calc(var(--step-013) * 2)) rotateX(calc(var(--step-018) * 1)) rotateY(calc(var(--step-020) * 1)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(25)>div {
+    transform:
+      rotateX(calc(var(--step-000) * 1)) rotateZ(calc(var(--step-002) * 1)) rotateZ(calc(var(--step-004) * -2)) rotateX(calc(var(--step-006) * -1)) rotateX(calc(var(--step-008) * -2)) rotateZ(calc(var(--step-010) * -1)) rotateX(calc(var(--step-012) * 2)) rotateY(calc(var(--step-014) * 2)) rotateY(calc(var(--step-017) * 2)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(26)>div {
+    transform:
+      rotateZ(calc(var(--step-003) * 2)) rotateY(calc(var(--step-004) * -2)) rotateZ(calc(var(--step-009) * -2)) rotateY(calc(var(--step-013) * 2)) rotateZ(calc(var(--step-014) * 2)) rotateY(calc(var(--step-015) * -2)) rotateZ(calc(var(--step-020) * 1)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
+  }
+
+  &>div:nth-of-type(27)>div {
+    transform:
+      rotateZ(calc(var(--step-003) * 2)) rotateY(calc(var(--step-004) * -2)) rotateZ(calc(var(--step-009) * -2)) rotateX(calc(var(--step-010) * -1)) rotateY(calc(var(--step-011) * 2)) rotateZ(calc(var(--step-012) * -2)) rotateZ(calc(var(--step-015) * -2)) rotateX(calc(var(--step-016) * 1)) rotateZ(calc(var(--step-020) * 1)) translateX(calc(var(--x) * var(--cube-width))) translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--y) * var(--cube-height))) translateY(calc(var(--cube-height) / -2)) translateZ(calc(var(--z) * var(--cube-depth)));
   }
 }

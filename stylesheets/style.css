@@ -1,4 +1,6 @@
 @import url(./title.css);
+@import url(./level-select.css);
+@import url(./levels/level.css);
 
 :root {
     --cube-yellow: #f6cf71;
@@ -18,5 +20,5 @@
 
 body {
     /* Alternative: #f4e1c1 */
-    background-color: #bfe9e5; 
+    background-color: #bfe9e5;
 }
