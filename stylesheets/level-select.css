@@ -13,41 +13,41 @@
 }
 
 /* Level 1 selected */
-:has(nav>div:nth-child(7) input:checked) {
+:has(nav>div>div:nth-child(7) input:checked) {
     background-color: red;
 }
 
 /* Level 0 selected */
-:has(nav>div:nth-child(8) input:checked) {
+:has(nav>div>div:nth-child(8) input:checked) {
     background-color: green;
 }
 
 /* Level 2 selected */
-:has(nav>div:nth-child(9) input:checked) {
+:has(nav>div>div:nth-child(9) input:checked) {
     background-color: blue;
 }
 
 /* Level 3 selected */
-:has(nav>div:nth-child(16) input:checked) {
+:has(nav>div>div:nth-child(16) input:checked) {
     background-color: red;
 }
 
 /* Level 4 selected */
-:has(nav>div:nth-child(18) input:checked) {
+:has(nav>div>div:nth-child(18) input:checked) {
     background-color: green;
 }
 
 /* Level 5 selected */
-:has(nav>div:nth-child(25) input:checked) {
+:has(nav>div>div:nth-child(25) input:checked) {
     background-color: blue;
 }
 
 /* Level 6 selected */
-:has(nav>div:nth-child(26) input:checked) {
+:has(nav>div>div:nth-child(26) input:checked) {
     background-color: red;
 }
 
 /* Level 7 selected */
-:has(nav>div:nth-child(27) input:checked) {
+:has(nav>div>div:nth-child(27) input:checked) {
     background-color: green;
 }
