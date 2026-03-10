@@ -1,12 +1,12 @@
 @import url(./title.css);
 
 :root {
-    --cube-yellow: yellow;
-    --cube-red: red;
-    --cube-orange: orange;
+    --cube-yellow: #f6cf71;
+    --cube-red: #f388b1;
+    --cube-orange: #f89c74;
     --cube-white: white;
-    --cube-green: green;
-    --cube-blue: blue;
+    --cube-green: #87c55f;
+    --cube-blue: #9eb9f3;
 
     font-family: sans-serif;
 }
@@ -14,4 +14,9 @@
 * {
     margin: 0;
     padding: 0;
+}
+
+body {
+    /* Alternative: #f4e1c1 */
+    background-color: #bfe9e5; 
 }
