@@ -2,28 +2,39 @@
 header {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* default: two columns */
-  gap: 16px;
+  grid-template-rows: 1fr;
+  height: 100vh;
+
+  /* Title start location */
+  --title-origin-x: -0.5;
+  --title-align: left;  
+
+  /* Cube size */
+  --base-cube-size: 8vw;
 
   & * {
     transform-style: preserve-3d;
   }
 }
 
-/* Switch to two rows when aspect ratio < 1 (portrait) */
-@media (max-aspect-ratio: 1/1) {
+@media (max-width: 600px) {
   header {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
+    --base-cube-size: 15vw;
   }
 
   header>div:nth-child(1) {
     justify-content: center;
   }
+
+  header>div>div {
+        --title-origin-x: 0;
+    --title-align: center;  
+  }
 }
 
 /* Title section */
-
 @property --x-rotation {
   syntax: "<angle>";
   inherits: false;
@@ -61,104 +72,125 @@ header {
 }
 
 header>div {
-  --cube-width: 8vw;
+  --cube-width: var(--base-cube-size);
   --cube-height: var(--cube-width);
   --cube-depth: var(--cube-width);
 
-  /* TODO EDIT */
   display: flex;
   position: relative;
   justify-content: flex-end;
   align-items: center;
-  height: 100vh;
 
+ &>div {
+
+  /* "SOLVE" cubes group */
+  &:nth-child(1) {
+    --animation-name: rotation-solve;
+    --animation-duration: 1s;
+    --y: -1.5;
+
+    /* S */
+    &>div:nth-child(1) {
+      --initial-rotation: 0deg;
+      --x: if(style(--title-align: left): calc(var(--title-origin-x) - 4);
+              style(--title-align: center): calc(var(--title-origin-x) - 2)
+            );
+    }
+
+    /* O */
+    &>div:nth-child(2) {
+      --initial-rotation: 180deg;
+      --x: if(style(--title-align: left): calc(var(--title-origin-x) - 3);
+              style(--title-align: center): calc(var(--title-origin-x) - 1)
+            );
+    }
+
+    /* L */
+    &>div:nth-child(3) {
+      --initial-rotation: 90deg;
+      --x: if(style(--title-align: left): calc(var(--title-origin-x) - 2);
+              style(--title-align: center): calc(var(--title-origin-x))
+            );
+    }
+
+    /* V */
+    &>div:nth-child(4) {
+      --initial-rotation: 270deg;
+      --x: if(style(--title-align: left): calc(var(--title-origin-x) - 1);
+              style(--title-align: center): calc(var(--title-origin-x) + 1)
+            );
+    }
+
+    /* E */
+    &>div:nth-child(5) {
+      --initial-rotation: 90deg;
+      --x: if(style(--title-align: left): calc(var(--title-origin-x));
+              style(--title-align: center): calc(var(--title-origin-x) + 2)
+            );
+    }
+  }
+
+  /* "IT" cubes group */
+  &:nth-child(2) {
+    --animation-name: rotation-it;
+    --animation-duration: 2s;
+    --y: 0;
+
+    /* I */
+    &>div:nth-child(1) {
+      --initial-rotation: 0deg;
+      --x: if(style(--title-align: left): calc(var(--title-origin-x) - 1);
+              style(--title-align: center): calc(var(--title-origin-x) - 0.5)
+            );
+    }
+
+    /* T */
+    &>div:nth-child(2) {
+      --initial-rotation: 180deg;
+  --x: if(style(--title-align: left): calc(var(--title-origin-x));
+              style(--title-align: center): calc(var(--title-origin-x) + 0.5);
+            );
+    }
+  }
+
+  /* "NOW" cubes group */
+  &:nth-child(3) {
+    --animation-name: rotation-now;
+    --animation-duration: 3s;
+    --y: 1.5;
+
+    /* N */
+    &>div:nth-child(1) {
+      --initial-rotation: 180deg;
+      --x: if(style(--title-align: left): calc(var(--title-origin-x) - 2);
+              style(--title-align: center): calc(var(--title-origin-x) - 1);
+            );
+    }
+
+    /* O */
+    &>div:nth-child(2) {
+      --initial-rotation: 90deg;
+      --x: if(style(--title-align: left): calc(var(--title-origin-x) - 1);
+              style(--title-align: center): calc(var(--title-origin-x));
+            );
+    }
+
+    /* W */
+    &>div:nth-child(3) {
+      --initial-rotation: 270deg;
+      --x: if(style(--title-align: left): calc(var(--title-origin-x));
+              style(--title-align: center): calc(var(--title-origin-x) + 1);
+            );
+    }
+  }
+
+  /* All Cubes */
   &>div {
-
-    /* "SOLVE" cubes group */
-    &:nth-child(1) {
-      --animation-name: rotation-solve;
-      --animation-duration: 1s;
-      --y: -1.5;
-
-      /* "S" Cube */
-      &>div:nth-child(1) {
-        --initial-rotation: 0deg;
-        --x: -4.5;
-      }
-
-      /* "O" Cube */
-      &>div:nth-child(2) {
-        --initial-rotation: 180deg;
-        --x: -3.5;
-      }
-
-      /* "L" Cube */
-      &>div:nth-child(3) {
-        --initial-rotation: 90deg;
-        --x: -2.5;
-      }
-
-      /* "V" Cube */
-      &>div:nth-child(4) {
-        --initial-rotation: 270deg;
-        --x: -1.5;
-      }
-
-      /* "E" Cube */
-      &>div:nth-child(5) {
-        --initial-rotation: 90deg;
-        --x: -0.5;
-      }
-    }
-
-    /* "IT" cubes group */
-    &:nth-child(2) {
-      --animation-name: rotation-it;
-      --animation-duration: 2s;
-      --y: 0;
-
-      /* "I" Cube */
-      &>div:nth-child(1) {
-        --initial-rotation: 0deg;
-        --x: -1.5;
-      }
-
-      /* "T" Cube */
-      &>div:nth-child(2) {
-        --initial-rotation: 180deg;
-        --x: -0.5;
-      }
-    }
-
-    /* "NOW" cubes group */
-    &:nth-child(3) {
-      --animation-name: rotation-now;
-      --animation-duration: 3s;
-      --y: 1.5;
-
-      /* "N" Cube */
-      &>div:nth-child(1) {
-        --initial-rotation: 180deg;
-        --x: -2.5;
-      }
-
-      /* "O" Cube */
-      &>div:nth-child(2) {
-        --initial-rotation: 90deg;
-        --x: -1.5;
-      }
-
-      /* "W" Cube */
-      &>div:nth-child(3) {
-        --initial-rotation: 270deg;
-        --x: -0.5;
-      }
-    }
-
-    /* All Cubes */
-    &>div {
-      transform: translateX(calc(var(--cube-width) * var(--x))) translateY(calc(var(--cube-height) * var(--y))) rotateX(var(--x-rotation)) rotateX(var(--initial-rotation, 0deg));
-
+    transform:
+      translateX(calc(var(--cube-width) * var(--x)))
+      translateY(calc(var(--cube-height) * var(--y)))
+      rotateX(var(--x-rotation))
+      rotateX(var(--initial-rotation, 0deg));
       /* Even cubes */
       &:nth-of-type(even) {
         animation: var(--animation-name) var(--animation-duration) ease-out;
@@ -359,9 +391,10 @@ header>nav {
   justify-content: center;
 
   &>div {
-    --cube-width: calc(8vw * 1.35 );
+    --cube-width: calc(var(--base-cube-size) * 1.35);
     --cube-height: var(--cube-width);
     --cube-depth: var(--cube-width);
+
     transform: translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--cube-height) / -2));
 
 
