@@ -1,17 +1,7 @@
 @import url(./title.css);
 @import url(./level-select.css);
 @import url(./levels/level.css);
-
-:root {
-    --cube-yellow: #f6cf71;
-    --cube-red: #f388b1;
-    --cube-orange: #f89c74;
-    --cube-white: white;
-    --cube-green: #87c55f;
-    --cube-blue: #9eb9f3;
-
-    font-family: sans-serif;
-}
+@import url(./theme-select.css);
 
 * {
     margin: 0;
@@ -21,4 +11,8 @@
 body {
     /* Alternative: #f4e1c1 */
     background-color: #bfe9e5;
+}
+
+:root {
+    font-family: sans-serif;
 }

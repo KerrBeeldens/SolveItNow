@@ -359,7 +359,7 @@ header>nav {
   justify-content: center;
 
   &>div {
-    --cube-width: calc(8vw * 1.35);
+    --cube-width: calc(8vw * 1.35 );
     --cube-height: var(--cube-width);
     --cube-depth: var(--cube-width);
     transform: translateX(calc(var(--cube-width) / -2)) translateY(calc(var(--cube-height) / -2));
@@ -443,6 +443,10 @@ header>nav {
           & span {
             font-size: calc(var(--cube-width) * 0.125);
           }
+        }
+
+        & img {
+          width:50%;  
         }
       }
 

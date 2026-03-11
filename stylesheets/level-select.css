@@ -17,11 +17,6 @@
     background-color: red;
 }
 
-/* Level 0 selected */
-:has(nav>div>div:nth-child(8) input:checked) {
-    background-color: green;
-}
-
 /* Level 2 selected */
 :has(nav>div>div:nth-child(9) input:checked) {
     background-color: blue;
