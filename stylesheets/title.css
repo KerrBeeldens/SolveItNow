@@ -1,5 +1,5 @@
 /*  Main Layout */
-header {
+body>header {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
@@ -18,18 +18,18 @@ header {
 }
 
 @media (max-width: 600px) {
-  header {
+  body>header {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
     --base-cube-size: 15vw;
   }
 
-  header>div:nth-child(1) {
+  body>header>div:nth-child(1) {
     justify-content: center;
   }
 
-  header>div>div {
-        --title-origin-x: 0;
+  body>header>div>div {
+    --title-origin-x: 0;
     --title-align: center;  
   }
 }
@@ -71,7 +71,7 @@ header {
   }
 }
 
-header>div {
+body>header>div {
   --cube-width: var(--base-cube-size);
   --cube-height: var(--cube-width);
   --cube-depth: var(--cube-width);
@@ -384,7 +384,7 @@ header>div {
   }
 }
 
-header>nav {
+body>header>nav {
   display: flex;
   position: relative;
   align-items: center;

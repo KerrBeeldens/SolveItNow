@@ -1,12 +1,12 @@
 /* If "back to menu" radiobutton is not selected, hide header  */
-:has(main input:not(:checked)) {
+:has(main>div:nth-child(1) input:not(:checked)) {
     & header {
         display: none;
     }
 }
 
 /* Else, hide main */
-:has(main input:checked) {
+:has(main>div:nth-child(1) input:checked) {
     & main {
         display: none;
     }
@@ -14,35 +14,29 @@
 
 /* Level 1 selected */
 :has(nav>div>div:nth-child(7) input:checked) {
-    background-color: red;
 }
 
 /* Level 2 selected */
 :has(nav>div>div:nth-child(9) input:checked) {
-    background-color: blue;
 }
 
 /* Level 3 selected */
 :has(nav>div>div:nth-child(16) input:checked) {
-    background-color: red;
 }
 
 /* Level 4 selected */
 :has(nav>div>div:nth-child(18) input:checked) {
-    background-color: green;
 }
 
 /* Level 5 selected */
 :has(nav>div>div:nth-child(25) input:checked) {
-    background-color: blue;
 }
 
 /* Level 6 selected */
 :has(nav>div>div:nth-child(26) input:checked) {
-    background-color: red;
+
 }
 
 /* Level 7 selected */
 :has(nav>div>div:nth-child(27) input:checked) {
-    background-color: green;
 }
