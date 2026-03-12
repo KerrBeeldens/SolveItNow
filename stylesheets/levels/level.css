@@ -72,12 +72,12 @@ body > main {
       }
 
       /* TODO when having more button groups, this selector needs to select form the 4th onward */
-      & > :nth-child(4) { 
-            display: grid;
-            grid-template-rows: subgrid;
-            grid-template-columns: subgrid;
-            grid-column: 1 / -1;
-            grid-row: 2 / -1;
+      & > :nth-child(4) {
+        display: grid;
+        grid-template-rows: subgrid;
+        grid-template-columns: subgrid;
+        grid-column: 1 / -1;
+        grid-row: 2 / -1;
       }
 
       & label {
@@ -89,27 +89,18 @@ body > main {
       }
     }
 
-
-
-
-
-
-
-
-
-
-    
-
-/* Hide rotate + flip buttons by default */
-    /* &> div:nth-of-type(2) > div label {
-    display: none;
-  } */
+    /* Hide rotate + flip buttons by default */
+    & > div:last-child > div:nth-child(-n + 3) > label {
+      display: none;
+    }
 
     /* Rotation/flip button controls */
 
     /* Flip */
-    &:has(div:nth-last-of-type(2):nth-child(2) label:nth-of-type(1) :checked) {
-      & div:nth-last-of-type(2):nth-child(2) label:nth-of-type(2) {
+    &:has(
+      div:nth-of-type(2) > div:nth-of-type(2) > label:nth-of-type(1) :checked
+    ) {
+      & div:nth-of-type(2) > div:nth-of-type(2) > label:nth-of-type(2) {
         display: flex;
       }
 
@@ -119,9 +110,9 @@ body > main {
     }
 
     &:has(
-      div:nth-last-of-type(2):nth-child(2) > label:nth-of-type(2) :checked
+      div:nth-of-type(2) > div:nth-of-type(2) > label:nth-of-type(2) :checked
     ) {
-      & div:nth-last-of-type(2):nth-child(2) > label:nth-of-type(1) {
+      & div:nth-of-type(2) > div:nth-of-type(2) > label:nth-of-type(1) {
         display: flex;
       }
 
@@ -133,93 +124,114 @@ body > main {
     /* Rotation (left)*/
 
     /* 0 -> 270 */
-    &:has(div:nth-last-of-type(3) > label:nth-of-type(1) input:checked) {
-
-      & div:nth-last-of-type(3) > label:nth-of-type(4) {
+    &:has(
+      div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(1) :checked
+    ) {
+      & div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(4) {
         display: flex;
       }
-      
-      &> div:nth-of-type(1) > div {
+
+      & > div:nth-of-type(1) > div {
         --cube-rotate-y: 270deg;
       }
     }
 
-     /* 270 -> 180 */
-     &:has(div:nth-last-of-type(3) > label:nth-of-type(4) input:checked) {
-
-      & div:nth-last-of-type(3) > label:nth-of-type(3) {
+    /* 270 -> 180 */
+    &:has(
+      div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(4) :checked
+    ) {
+      div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(3) {
         display: flex;
       }
 
-      &> div:nth-of-type(1) > div {
+      & > div:nth-of-type(1) > div {
         --cube-rotate-y: 180deg;
       }
     }
 
     /* 180 -> 90 */
-     &:has(div:nth-last-of-type(3) > label:nth-of-type(3) input:checked) {
-
-      & div:nth-last-of-type(3) > label:nth-of-type(2) {
+    &:has(
+      div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(3) :checked
+    ) {
+      div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(2) {
         display: flex;
       }
 
-       &> div:nth-of-type(1) > div {
+      & > div:nth-of-type(1) > div {
         --cube-rotate-y: 90deg;
       }
     }
 
-      /* 90 -> 0 */
-     &:has(div:nth-last-of-type(3) > label:nth-of-type(2) input:checked) {
-
-      & div:nth-last-of-type(3) > label:nth-of-type(1) {
+    /* 90 -> 0 */
+    &:has(
+      div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(2) :checked
+    ) {
+      div:nth-of-type(2) > div:nth-of-type(1) > label:nth-of-type(1) {
         display: flex;
       }
 
-        &> div:nth-of-type(1) > div {
+      & > div:nth-of-type(1) > div {
         --cube-rotate-y: 0deg;
       }
     }
 
     /* Rotation (right) */
 
-/* 0 -> 90 */
-&:has(div:nth-last-of-type(3) > label:nth-of-type(1) input:checked) {
+    /* 0 -> 90 */
+    &:has(
+      div:nth-of-type(2):nth-of-type(2)
+        > div:nth-of-type(1)
+        > label:nth-of-type(1)
+        :checked
+    ) {
+      div:nth-of-type(2) > div:nth-of-type(3) > label:nth-of-type(2) {
+        display: flex;
+      }
+    }
 
-  & div:nth-last-of-type(1) > label:nth-of-type(2) {
-    display: flex;
+    /* 90 -> 180 */
+    &:has(
+      div:nth-of-type(2):nth-of-type(2)
+        > div:nth-of-type(1)
+        > label:nth-of-type(2)
+        :checked
+    ) {
+      div:nth-of-type(2) > div:nth-of-type(3) > label:nth-of-type(3) {
+        display: flex;
+      }
+    }
+
+    /* 180 -> 270 */
+    &:has(
+      div:nth-of-type(2):nth-of-type(2)
+        > div:nth-of-type(1)
+        > label:nth-of-type(3)
+        :checked
+    ) {
+      div:nth-of-type(2) > div:nth-of-type(3) > label:nth-of-type(4) {
+        display: flex;
+      }
+    }
+
+    /* 270 -> 0 */
+    &:has(
+      div:nth-of-type(2):nth-of-type(2)
+        > div:nth-of-type(1)
+        > label:nth-of-type(4)
+        :checked
+    ) {
+      div:nth-of-type(2) > div:nth-of-type(3) > label:nth-of-type(1) {
+        display: flex;
+      }
+    }
   }
 }
 
-/* 90 -> 180 */
-&:has(div:nth-last-of-type(3) > label:nth-of-type(2) input:checked) {
-
-  & div:nth-last-of-type(1) > label:nth-of-type(3) {
-    display: flex;
-  }
-}
-
-/* 180 -> 270 */
-&:has(div:nth-last-of-type(3) > label:nth-of-type(3) input:checked) {
-
-  & div:nth-last-of-type(1) > label:nth-of-type(4) {
-    display: flex;
-  }
-}
-
-/* 270 -> 0 */
-&:has(div:nth-last-of-type(3) > label:nth-of-type(4) input:checked) {
-
-  & div:nth-last-of-type(1) > label:nth-of-type(1) {
-    display: flex;
-  }
-}
-  }
-}
-
+/* Apply the rotation */
 body > main > div:nth-of-type(2) > div:nth-of-type(1) > div {
-    transform:
-        rotateY(var(--cube-rotate-y))
-        rotateX(var(--cube-flip-x, 0deg));
-    transform-origin: center;
-    transition: transform 1s;
+  --cube-rotate-y: 180deg;
+  transform: rotateY(var(--cube-rotate-y, 0deg))
+    rotateX(var(--cube-flip-x, 0deg));
+  transform-origin: center;
+  transition: transform 1s;
 }

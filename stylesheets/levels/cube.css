@@ -1,255 +1,234 @@
-body>main>div:nth-of-type(2) {
+body > main > div:nth-of-type(2) {
+  & * {
+    transform-style: preserve-3d;
+  }
 
-    & * {
-        transform-style: preserve-3d;
+  & > div:nth-of-type(1) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    perspective: 2000px;
+    perspective-origin: 1000px -300px;
+
+    --cube-width: 8vh;
+    --cube-height: var(--cube-width);
+    --cube-depth: var(--cube-width);
+
+    /* All faces */
+    & > div > div > div {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      box-shadow: inset 0 0 0 2px black;
+
+      position: absolute;
+      width: var(--cube-width);
+      height: var(--cube-height);
+      transition: transform 0.3s;
     }
 
-    &>div:nth-of-type(1) {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        perspective: 2000px;
-        perspective-origin: 1000px -300px;
+    /* All cubes */
+    & > div > div {
+      --base-translate: translateX(
+          calc(var(--x) * var(--cube-width) + var(--cube-width) / -2)
+        )
+        translateY(
+          calc(var(--y) * var(--cube-height) + var(--cube-height) / -2)
+        )
+        translateZ(calc(var(--z) * var(--cube-depth)));
 
-        --cube-width: 8vh;
-        --cube-height: var(--cube-width);
-        --cube-depth: var(--cube-width);    
+      /* Front faces */
+      & > div:nth-child(1) {
+        background: black;
+        transform: translateZ(calc(var(--cube-depth) / 2));
+      }
 
-        /* All faces */
-        &>div>div>div {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            box-shadow: inset 0 0 0 2px black;
+      &[style*="--z:1"] > div:nth-child(1) {
+        background: var(--cube-red);
+      }
 
-            position: absolute;
-            width: var(--cube-width);
-            height: var(--cube-height);
-            transition: transform 0.3s;
-        }
+      /* Back faces*/
+      & > div:nth-child(2) {
+        background: black;
+        transform: translateZ(calc(var(--cube-depth) / -2));
+      }
 
-        /* All cubes */
-        &>div>div {
-            --base-translate: 
-            translateX(calc(var(--x) * var(--cube-width) + var(--cube-width) / -2)) 
-            translateY(calc(var(--y) * var(--cube-height) + var(--cube-height) / -2)) 
-            translateZ(calc(var(--z) * var(--cube-depth)));
+      &[style*="--z:-1"] > div:nth-child(2) {
+        background: var(--cube-blue);
+      }
 
-            /* Front faces */
-            &>div:nth-child(1) {
-                background: black;
-                transform: translateZ(calc(var(--cube-depth) / 2));
-            }
+      /* Top faces */
+      & > div:nth-child(3) {
+        background: black;
+        transform: rotateX(90deg) translateZ(calc(var(--cube-height) / 2));
+      }
 
-            &[style*="--z:1"]>div:nth-child(1) {
-                background: var(--cube-red);
-            }
+      &[style*="--y:-1"] > div:nth-child(3) {
+        background: var(--cube-yellow);
+      }
 
-            /* Back faces*/
-            &>div:nth-child(2) {
-                background: black;
-                transform: translateZ(calc(var(--cube-depth) / -2));
-            }
+      /* Bottom faces */
+      & > div:nth-child(4) {
+        background: black;
+        transform: rotateX(90deg) translateZ(calc(var(--cube-height) / -2));
+      }
 
-            &[style*="--z:-1"]>div:nth-child(2) {
-                background: var(--cube-blue);
-            }
+      &[style*="--y:1"] > div:nth-child(4) {
+        background: var(--cube-green);
+      }
 
-            /* Top faces */
-            &>div:nth-child(3) {
-                background: black;
-                transform: rotateX(90deg) translateZ(calc(var(--cube-height) / 2));
-            }
+      /* Right faces */
+      & > div:nth-child(5) {
+        background: black;
+        transform: rotateY(90deg) translateZ(calc(var(--cube-width) / 2));
+      }
 
-            &[style*="--y:-1"]>div:nth-child(3) {
-                background: var(--cube-yellow);
-            }
+      &[style*="--x:1"] > div:nth-child(5) {
+        background: var(--cube-orange);
+      }
 
-            /* Bottom faces */
-            &>div:nth-child(4) {
-                background: black;
-                transform: rotateX(90deg) translateZ(calc(var(--cube-height) / -2));
-            }
+      /* Left faces */
+      & > div:nth-child(6) {
+        background: black;
+        transform: rotateY(90deg) translateZ(calc(var(--cube-width) / -2));
+      }
 
-            &[style*="--y:1"]>div:nth-child(4) {
-                background: var(--cube-green);
-            }
-
-            /* Right faces */
-            &>div:nth-child(5) {
-                background: black;
-                transform: rotateY(90deg) translateZ(calc(var(--cube-width) / 2));
-            }
-
-            &[style*="--x:1"]>div:nth-child(5) {
-                background: var(--cube-orange);
-            }
-
-            /* Left faces */
-            &>div:nth-child(6) {
-                background: black;
-                transform: rotateY(90deg) translateZ(calc(var(--cube-width) / -2));
-            }
-
-            &[style*="--x:-1"]>div:nth-child(6) {
-                background: var(--cube-white);
-            }
-        }
-
-
-&>div:nth-of-type(1)>div {
-    transform:
-        rotateY(calc(var(--step-000) * -1)) var(--base-translate);
-}
-
-&>div:nth-of-type(2)>div {
-    transform:
-        rotateY(calc(var(--step-000) * -1)) var(--base-translate);
-}
-
-&>div:nth-of-type(3)>div {
-    transform:
-        rotateY(calc(var(--step-000) * -1)) rotateX(calc(var(--step-001) * 1)) rotateZ(calc(var(--step-002) * 1)) var(--base-translate);
-}
-
-&>div:nth-of-type(4)>div {
-    transform:
-        rotateY(calc(var(--step-000) * -1)) var(--base-translate);
-}
-
-&>div:nth-of-type(5)>div {
-    transform:
-        rotateY(calc(var(--step-000) * -1)) var(--base-translate);
-}
-
-&>div:nth-of-type(6)>div {
-    transform:
-        rotateY(calc(var(--step-000) * -1)) rotateX(calc(var(--step-001) * 1)) var(--base-translate);
-}
-
-&>div:nth-of-type(7)>div {
-    transform:
-        rotateY(calc(var(--step-000) * -1)) var(--base-translate);
-}
-
-&>div:nth-of-type(8)>div {
-    transform:
-        rotateY(calc(var(--step-000) * -1)) var(--base-translate);
-}
-
-&>div:nth-of-type(9)>div {
-    transform:
-        rotateY(calc(var(--step-000) * -1)) rotateX(calc(var(--step-001) * 1)) var(--base-translate);
-}
-
-&>div:nth-of-type(10)>div {
-    transform:
-        var(--base-translate);
-}
-
-&>div:nth-of-type(11)>div {
-    transform:
-        var(--base-translate);
-}
-
-&>div:nth-of-type(12)>div {
-    transform:
-        var(--base-translate);
-}
-
-&>div:nth-of-type(13)>div {
-    transform:
-        var(--base-translate);
-}
-
-&>div:nth-of-type(14)>div {
-    transform:
-        var(--base-translate);
-}
-
-&>div:nth-of-type(15)>div {
-    transform:
-        var(--base-translate);
-}
-
-&>div:nth-of-type(16)>div {
-    transform:
-        rotateZ(calc(var(--step-001) * 1)) var(--base-translate);
-}
-
-&>div:nth-of-type(17)>div {
-    transform:
-        rotateZ(calc(var(--step-001) * 1)) var(--base-translate);
-}
-
-&>div:nth-of-type(18)>div {
-    transform:
-        rotateZ(calc(var(--step-001) * 1)) rotateX(calc(var(--step-002) * -1)) var(--base-translate);
-}
-
-&>div:nth-of-type(19)>div {
-    transform:
-        rotateY(calc(var(--step-002) * -1)) var(--base-translate);
-}
-
-&>div:nth-of-type(20)>div {
-    transform:
-        rotateY(calc(var(--step-002) * -1)) var(--base-translate);
-}
-
-&>div:nth-of-type(21)>div {
-    transform:
-        rotateY(calc(var(--step-002) * -1)) var(--base-translate);
-}
-
-&>div:nth-of-type(22)>div {
-    transform:
-        rotateY(calc(var(--step-002) * -1)) var(--base-translate);
-}
-
-&>div:nth-of-type(23)>div {
-    transform:
-        rotateY(calc(var(--step-002) * -1)) var(--base-translate);
-}
-
-&>div:nth-of-type(24)>div {
-    transform:
-        rotateY(calc(var(--step-002) * -1)) var(--base-translate);
-}
-
-&>div:nth-of-type(25)>div {
-    transform:
-        rotateZ(calc(var(--step-001) * 1)) var(--base-translate);
-}
-
-&>div:nth-of-type(26)>div {
-    transform:
-        rotateZ(calc(var(--step-001) * 1)) var(--base-translate);
-}
-
-&>div:nth-of-type(27)>div {
-    transform:
-        rotateZ(calc(var(--step-001) * 1)) rotateX(calc(var(--step-002) * -1)) var(--base-translate);
-}
+      &[style*="--x:-1"] > div:nth-child(6) {
+        background: var(--cube-white);
+      }
     }
+
+    & > div:nth-of-type(1) > div {
+      transform: rotateY(calc(var(--step-000) * -1)) var(--base-translate);
+    }
+
+    & > div:nth-of-type(2) > div {
+      transform: rotateY(calc(var(--step-000) * -1)) var(--base-translate);
+    }
+
+    & > div:nth-of-type(3) > div {
+      transform: rotateY(calc(var(--step-000) * -1))
+        rotateX(calc(var(--step-001) * 1)) rotateZ(calc(var(--step-002) * 1))
+        var(--base-translate);
+    }
+
+    & > div:nth-of-type(4) > div {
+      transform: rotateY(calc(var(--step-000) * -1)) var(--base-translate);
+    }
+
+    & > div:nth-of-type(5) > div {
+      transform: rotateY(calc(var(--step-000) * -1)) var(--base-translate);
+    }
+
+    & > div:nth-of-type(6) > div {
+      transform: rotateY(calc(var(--step-000) * -1))
+        rotateX(calc(var(--step-001) * 1)) var(--base-translate);
+    }
+
+    & > div:nth-of-type(7) > div {
+      transform: rotateY(calc(var(--step-000) * -1)) var(--base-translate);
+    }
+
+    & > div:nth-of-type(8) > div {
+      transform: rotateY(calc(var(--step-000) * -1)) var(--base-translate);
+    }
+
+    & > div:nth-of-type(9) > div {
+      transform: rotateY(calc(var(--step-000) * -1))
+        rotateX(calc(var(--step-001) * 1)) var(--base-translate);
+    }
+
+    & > div:nth-of-type(10) > div {
+      transform: var(--base-translate);
+    }
+
+    & > div:nth-of-type(11) > div {
+      transform: var(--base-translate);
+    }
+
+    & > div:nth-of-type(12) > div {
+      transform: var(--base-translate);
+    }
+
+    & > div:nth-of-type(13) > div {
+      transform: var(--base-translate);
+    }
+
+    & > div:nth-of-type(14) > div {
+      transform: var(--base-translate);
+    }
+
+    & > div:nth-of-type(15) > div {
+      transform: var(--base-translate);
+    }
+
+    & > div:nth-of-type(16) > div {
+      transform: rotateZ(calc(var(--step-001) * 1)) var(--base-translate);
+    }
+
+    & > div:nth-of-type(17) > div {
+      transform: rotateZ(calc(var(--step-001) * 1)) var(--base-translate);
+    }
+
+    & > div:nth-of-type(18) > div {
+      transform: rotateZ(calc(var(--step-001) * 1))
+        rotateX(calc(var(--step-002) * -1)) var(--base-translate);
+    }
+
+    & > div:nth-of-type(19) > div {
+      transform: rotateY(calc(var(--step-002) * -1)) var(--base-translate);
+    }
+
+    & > div:nth-of-type(20) > div {
+      transform: rotateY(calc(var(--step-002) * -1)) var(--base-translate);
+    }
+
+    & > div:nth-of-type(21) > div {
+      transform: rotateY(calc(var(--step-002) * -1)) var(--base-translate);
+    }
+
+    & > div:nth-of-type(22) > div {
+      transform: rotateY(calc(var(--step-002) * -1)) var(--base-translate);
+    }
+
+    & > div:nth-of-type(23) > div {
+      transform: rotateY(calc(var(--step-002) * -1)) var(--base-translate);
+    }
+
+    & > div:nth-of-type(24) > div {
+      transform: rotateY(calc(var(--step-002) * -1)) var(--base-translate);
+    }
+
+    & > div:nth-of-type(25) > div {
+      transform: rotateZ(calc(var(--step-001) * 1)) var(--base-translate);
+    }
+
+    & > div:nth-of-type(26) > div {
+      transform: rotateZ(calc(var(--step-001) * 1)) var(--base-translate);
+    }
+
+    & > div:nth-of-type(27) > div {
+      transform: rotateZ(calc(var(--step-001) * 1))
+        rotateX(calc(var(--step-002) * -1)) var(--base-translate);
+    }
+  }
 }
 
 @property --step-000 {
-    syntax: "<angle>";
-    inherits: false;
-    initial-value: 90deg;
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 90deg;
 }
 
 @property --step-001 {
-    syntax: "<angle>";
-    inherits: false;
-    initial-value: 90deg;
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 90deg;
 }
 
-
 @property --step-002 {
-    syntax: "<angle>";
-    inherits: false;
-    initial-value: 90deg;
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 90deg;
 }
