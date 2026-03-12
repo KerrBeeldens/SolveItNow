@@ -427,7 +427,7 @@
     <!-- TODO REMOVE -->
     <span>
       <label>
-        <input type="checkbox">
+        <input type="checkbox" checked>
         Level 1 completed
       </label>
 
@@ -498,11 +498,6 @@
     <!-- Cube -->
     <div>
       <div>
-        <!-- Buttons (turn left/right/up) -->
-        <div>
-          buttons
-        </div>
-
         <!-- TOP LAYER -->
 
         <div>
@@ -806,42 +801,93 @@
           </div>
         </div>
       </div>
-
-      <!-- Buttons ('U, U' etc.) -->
+      <!-- Buttons -->
       <div>
-        <div>
-          <!-- Normal moves -->
+
+          <!-- Rotate Left -->
           <div>
+            <label>
+                            Rotate left
+              <input type="radio" id="rotate-0" name="rotate" checked>
+            </label>
+
+                   <label>
+                                     Rotate left
+              <input type="radio" id="rotate-90" name="rotate">
+            </label>
+
+                   <label>
+                                            Rotate left
+              <input type="radio" id="rotate-180" name="rotate">
+            </label>
+
+                   <label>
+                                        Rotate left
+              <input type="radio" id="rotate-270" name="rotate">
+            </label>
+
+          </div>
+
+          <!-- Flip -->
+           <div>
+            <label>
+              Flip
+              <input type="radio" name="flip" checked>
+            </label>
+
+            <label>
+              Flip
+              <input type="radio" name="flip">
+            </label>
+           </div>
+
+          <!-- Rotate Right -->
+           <div>
+                        <label for="rotate-0">
+              Rotate right
+            </label>
+
+                        <label for="rotate-90">
+                    Rotate right
+            </label>
+
+                        <label for="rotate-180">
+                           Rotate right
+            </label>
+
+                        <label for="rotate-270">
+                             Rotate right
+            </label>
+
+           </div>
+
+           <div>
+        <!-- ('U, U' etc.) -->
             <label>L <input id="lf-001" type="checkbox"></label>
             <label>R <input id="rf-001" type="checkbox"></label>
             <label>U <input id="uf-001" type="checkbox"></label>
             <label>D <input id="df-001" type="checkbox"></label>
             <label>F <input id="ff-001" type="checkbox" required></label>
             <label>B <input id="bf-001" type="checkbox"></label>
-          </div>
 
           <!-- Prime moves -->
-          <div>
             <label>L' <input id="lp-001" type="checkbox"></label>
             <label>R' <input id="rp-001" type="checkbox"></label>
             <label>U' <input id="up-001" type="checkbox"></label>
             <label>D' <input id="dp-001" type="checkbox"></label>
             <label>F' <input id="fp-001" type="checkbox"></label>
             <label>B' <input id="bp-001" type="checkbox"></label>
-          </div>
 
           <!-- Double moves -->
-          <div>
             <label>L2 <input id="l2-001" type="checkbox"></label>
             <label>R2 <input id="r2-001" type="checkbox"></label>
             <label>U2 <input id="u2-001" type="checkbox"></label>
             <label>D2 <input id="d2-001" type="checkbox"></label>
             <label>F2 <input id="f2-001" type="checkbox"></label>
             <label>B2 <input id="b2-001" type="checkbox"></label>
-          </div>
+        </div>
         </div>
       </div>
-    </div>
   </main>
 </body>
 
