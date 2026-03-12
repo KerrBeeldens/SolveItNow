@@ -1,4 +1,5 @@
 # Solve It NOW!
+
 Leer hoe je een Rubik's Cube moet oplossen met deze interactieve tutorial. Gemaakt met alleen HTML en CSS zonder gebruik te maken van klassen of ID's.
 
 # Dagelijkse check-out woensdag 18/02
@@ -30,6 +31,7 @@ Morgen wil ik nog verder nadenken over wat ik wil maken, zodat ik een beter idee
 Deze week heb ik nog niet veel voortgang gemaakt met de Rubik's Cube. Ik heb nagedacht over wat ik wil gaan doen en dit besproken met de docent.
 
 Hieruit kwamen de volgende ideeeen:
+
 1. Ik probeer ten eerste een volledig werkende Rubik's Cube te maken met alleen CSS. Ik werk hieraan tijdens de vakantie.
 2. Mocht dit niet lukken, kijk ik of het me wel lukt om bijvoorbeeld een beperkt aantal stappen te tonen of een voorbepaalde volgorde van stappen. Aan het eind van de vakantie/begin volgende lesdag maak ik een keuze of ik hiermee doorga of iets ander kies.
 3. Als ik iets anders kies wordt dit waarschijnlijk de control panel.
@@ -37,17 +39,29 @@ Hieruit kwamen de volgende ideeeen:
 Zoals ik al aangaf, ga ik in de vakantie wat experimenteren en kijk ik waar het schip strand.
 
 # Dagelijkse check-out woensdag 04/03
+
 TODO
 
 # Dagelijkse check-out donderdag 05/03
+
 TODO
 
 # Voortgang week 2
+
 TODO
 
-# Dagelijkse check-out  woensdag 11/03
+# Dagelijkse check-out woensdag 11/03
+
 In het weekend heb ik hard gewerkt om de ruwe versie van de interface om te zetten in een volwaardig startscherm, met sensationele titel zoals de opdrachtomschrijving wilde. Ik had dit voor een deel algemaakt, maar vandaag heb ik hier echt de puntjes voor op de i gezet. Ik heb dit ook responsive gemaakt, waarvoor ik heb gewerkt met de CSS `if()` om wat 3D elementen recht uit te lijnen of te centreren afhankelijk van de breedte van het scherm. Dit werkt door een custom property aan te passen van `right` naar `center` in een media query. Vervolgens gebruik ik de if om op basis van deze waarde verschillende attributen een andere waarde mee te geven. In totaal ben ik hier een uur of 6 mee bezig geweest.
 
 Ik heb vandaag geleerd hoe ik gebruik maak van `if()` in css en tijdens de opstart in de ochtend heeft Sanne verschillende dingen verteld over kleuren, zoals verschillende colour spaces en manieren om kleur te representeren. In het bijzonder was `oklch` en het gebruik in gradients nieuw voor mij.
 
 Morgen wil ik een start gaan maken aan het levelscherm van mijn applicatie. Ik hoop deze voor begin volgende week af te hebben, zodat ik in de laatste week meerdere levels kan maken met uitleg over hoe je de kubus kan oplossen.
+
+# Dagelijkse check-out donderdag 12/03
+
+Vandaag heb ik gewerkt aan het levelscherm. Als de gebruiker op het hoofdmenu op een level drukt gaat hij naar dit scherm. In dit scherm kan de gebruiker terug naar het hoofdmenu. Ik heb ook de kubus die ik in eerder heb gemaakt toegevoegd. Daarnaast heb ik knoppen aan de onderkant toegevoegd om de kubus te kunnen draaien. Op dit moment werken alleen de knoppen om de kubus in zijn geheel te draaien. Dit duurde in totaal een uur of 6-7 om allemaal toe te voegen.
+
+Het was vandaag voor het eerst dat ik subgrid nodig had om de eerdergenoemde knoppen toe te voegen. Het gebruik hiervan was verbazingwekkend simpel, maar zeer krachtig. Dit is zeker iets dat ik in de toekomst verder ga gebruiken.
+
+In het weekend wil ik het mogelijk maken om de zijdes van de kubes wel te kunnen draaien. In een side project heb ik die code al geschreven, dus dit zou niet enorm veel werk moeten zijn om te implementeren, maar ik wil dit liever pas doen zodra de rest goed is (en ik geen grote structuurverandering meer aanbreng). Verder wil ik de styling van het level menu afmaken, zodat ik volgende week kan werken aan het implementeren van een tutorial om de kubus op te lossen.
