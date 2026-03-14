@@ -2,6 +2,7 @@
 @import url(./level-select.css);
 @import url(./levels/level.css);
 @import url(./theme-select.css);
+@import url(./levels/cubeSteps.css);
 
 * {
   margin: 0;
@@ -9,9 +10,53 @@
 }
 
 body {
-  /* Alternative: #f4e1c1 */
-  background-color: #bfe9e5;
+  margin: 0;
+  position: relative;
+  background-color: var(--background);
+  overflow: hidden;
 }
+
+label {
+  user-select: none;
+  cursor: pointer;
+}
+
+/* background-color: #9ee5c2;
+background-color: #e59e9e; */
+
+/* body::before {
+  content: "";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+
+  width: 200vmax;
+  height: 200vmax;
+
+  transform: translate(-50%, -50%) rotate(45deg);
+  transform-origin: center;
+
+  background-size: 100px;
+  background-repeat: repeat;
+  background-image: url('data:image/svg+xml,\
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">\
+<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="60" fill="rgba(0,0,0,0.125)">:)</text>\
+</svg>');
+
+  z-index: -1;
+
+animation: background-scroll 0.5s linear infinite;
+}
+
+@keyframes background-scroll {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 100px 0;
+  }
+} */
 
 :root {
   font-family: sans-serif;

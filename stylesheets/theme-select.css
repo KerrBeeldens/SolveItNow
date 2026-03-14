@@ -1,22 +1,6 @@
 /* Dark mode selected */
 :has(nav > div > div:nth-child(8) label:nth-child(1) input:checked) {
-  & nav > div > div:nth-child(8) label:nth-child(1) {
-    display: none;
-  }
-
-  &:root {
-    --cube-yellow: #b8963f;
-    --cube-red: #c45a86;
-    --cube-orange: #c46b45;
-    --cube-white: #d8d8d8;
-    --cube-green: #5f9e3c;
-    --cube-blue: #6f8fd6;
-  }
-}
-
-/* Light mode selected */
-:has(nav > div > div:nth-child(8) label:nth-child(2) input:checked) {
-  & nav > div > div:nth-child(8) label:nth-child(2) {
+  & nav>div>div:nth-child(8) label:nth-child(1) {
     display: none;
   }
 
@@ -24,8 +8,67 @@
     --cube-yellow: #f6cf71;
     --cube-red: #f388b1;
     --cube-orange: #f89c74;
-    --cube-white: white;
+    --cube-white: #ffffff;
     --cube-green: #87c55f;
     --cube-blue: #9eb9f3;
+
+    --cube-yellow-dark: color-mix(in srgb, var(--cube-yellow) 70%, black 30%);
+    --cube-red-dark: color-mix(in srgb, var(--cube-red) 70%, black 30%);
+    --cube-orange-dark: color-mix(in srgb, var(--cube-orange) 70%, black 30%);
+    --cube-white-dark: color-mix(in srgb, var(--cube-white) 70%, black 30%);
+    --cube-green-dark: color-mix(in srgb, var(--cube-green) 70%, black 30%);
+    --cube-blue-dark: color-mix(in srgb, var(--cube-blue) 70%, black 30%);
+
+    --background: #bfe9e5;
+    --background-dark: color-mix(in srgb, var(--background) 70%, black 30%);
+
+    --primary: #e9e9e9;
+    --primary-dark: color-mix(in srgb, var(--primary) 70%, black 30%);
+
+    --alert-incorrect: #e59e9e;
+    --alert-incorrect-dark: color-mix(in srgb, var(--alert-incorrect) 70%, black 30%);
+
+
+    --alert-correct: #9ee5c2;
+    --alert-correct-dark: color-mix(in srgb, var(--alert-correct) 70%, black 30%);
   }
 }
+
+/* Light mode selected */
+:has(nav > div > div:nth-child(8) label:nth-child(2) input:checked) {
+  & nav>div>div:nth-child(8) label:nth-child(2) {
+    display: none;
+  }
+
+  &:root {
+    --cube-yellow: #f6cf71;
+    --cube-red: #f388b1;
+    --cube-orange: #f89c74;
+    --cube-white: #ffffff;
+    --cube-green: #87c55f;
+    --cube-blue: #9eb9f3;
+
+    --cube-yellow-dark: color-mix(in srgb, var(--cube-yellow) 70%, black 30%);
+    --cube-red-dark: color-mix(in srgb, var(--cube-red) 70%, black 30%);
+    --cube-orange-dark: color-mix(in srgb, var(--cube-orange) 70%, black 30%);
+    --cube-white-dark: color-mix(in srgb, var(--cube-white) 70%, black 30%);
+    --cube-green-dark: color-mix(in srgb, var(--cube-green) 70%, black 30%);
+    --cube-blue-dark: color-mix(in srgb, var(--cube-blue) 70%, black 30%);
+
+    --background: #bfe9e5;
+    --background-dark: color-mix(in srgb, var(--background) 70%, black 30%);
+
+    --primary: #e9e9e9;
+    --primary-dark: color-mix(in srgb, var(--primary) 70%, black 30%);
+
+    --alert-incorrect: #e59e9e;
+    --alert-incorrect-dark: color-mix(in srgb, var(--alert-incorrect) 70%, black 30%);
+
+
+    --alert-correct: #9ee5c2;
+    --alert-correct-dark: color-mix(in srgb, var(--alert-correct) 70%, black 30%);
+  }
+}
+
+/* background-color: #9ee5c2;
+background-color: #e59e9e; */
