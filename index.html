@@ -301,7 +301,7 @@
 
         <div>
           <div style="--x:0; --y:0; --z:1;">
-            <div><a href="https://github.com/KerrBeeldens" target="_blank"><span>Made by</span>Kerr</a></div>
+            <div><a href="https://github.com/KerrBeeldens/SolveItNow" target="_blank"><span>Made by</span>Kerr</a></div>
             <div></div>
             <div></div>
             <div></div>
@@ -424,7 +424,7 @@
       </div>
     </nav>
 
-    <!-- TODO REMOVE -->
+    <!-- Level select -->
     <span>
       <label>
         <input type="checkbox" checked>
@@ -432,32 +432,32 @@
       </label>
 
       <label>
-        <input type="checkbox">
+        <input type="checkbox" id="level-2-unlocked">
         Level 2 completed
       </label>
 
       <label>
-        <input type="checkbox">
+        <input type="checkbox" id="level-3-unlocked">
         Level 3 completed
       </label>
 
       <label>
-        <input type="checkbox">
+        <input type="checkbox" id="level-4-unlocked">
         Level 4 completed
       </label>
 
       <label>
-        <input type="checkbox">
+        <input type="checkbox" id="level-5-unlocked">
         Level 5 completed
       </label>
 
       <label>
-        <input type="checkbox">
+        <input type="checkbox" id="level-6-unlocked">
         Level 6 completed
       </label>
 
       <label>
-        <input type="checkbox">
+        <input type="checkbox" id="level-7-unlocked">
         Level 7 completed
       </label>
     </span>
@@ -468,39 +468,164 @@
     <!-- Sidebar with goal and tutorial -->
     <aside>
 
-      <div>
-        <label>
-          Back to menu
-          <input type="radio" name="level-select" checked>
-        </label>
-      </div>
+      <label>
+        Back to menu
+        <input type="radio" name="level-select" checked>
+      </label>
 
+      <!-- Open guide buttons -->
       <div>
-        <details>
-          <summary>
-            Guide
-          </summary>
-          This is a guide
-        </details>
+        <label for="modal-1">
+          Guide
+        </label>
+
+        <label for="modal-2">
+          Guide
+        </label>
+
+        <label for="modal-3">
+          Guide
+        </label>
       </div>
     </aside>
 
     <!-- Modals -->
     <div>
       <dialog>
-        <h2>Level 1: The white cross</h2>
-        <div>Well now you're aware of them, so that's a good start. But here's why they're important: because the centre
-          pieces don't move, the face with a white sticker in the centre will always be the white face. You can test
-          this quite easily by rotating any face of the cube - you can see that the centre pieces only ever rotate, and
-          never move around in relation to each other. This is really very important, as it means that instead of trying
-          to shuffle around the 54 stickers of the cube, you're actually only moving 20 pieces (8 corner pieces and 12
-          edge pieces). Just like how the centre piece of any face is always that colour, every piece will always have
-          the same stickers on (unless you're the worst sort of cheater, but you wouldn't be reading this if you were).
+        <div>
+          <h2>Level 1: The white cross</h2>
+          <label>
+            ✖
+            <input type="checkbox" id="modal-1" checked>
+          </label>
         </div>
-        <label>
-          Got it!
-          <input type="checkbox" name="dialog">
-        </label>
+        <div>
+          <div>
+            <p>
+              Welcome to the first level! In this window you will find information guiding you through solving the cube.
+            </p>
+
+            <p> You can close this window at any time using the red cross in the top right corner.
+              Whenever you get stuck, simply press the "Guide" button in the top left corner to open this window again.
+            </p>
+
+            <p>
+              Solving the cube happens layer-by-layer and involves 7 steps. The first step is to create a white cross.
+              Like this:
+            </p>
+
+            <img src="resources/cubes/cube1.svg">
+
+          </div>
+
+
+          <div>
+            <p>
+              Before you get started making the white cross, you first need to understand move notation. A move is a
+              90 or 180 degree turn.
+            </p>
+
+            <p>
+              Each side of the cube gets a name:
+            </p>
+
+            <ul>
+              <li><em>U</em> for the Up layer</li>
+              <li><em>D</em> for the Down layer</li>
+              <li><em>L</em> for the left layer</li>
+              <li><em>R</em> for the right layer</li>
+              <li><em>F</em> for the front layer</li>
+              <li><em>B</em> for the back layer</li>
+            </ul>
+
+            <p>
+              Moving the left layer by 90 degrees clockwise is written as <em>L</em>, counterclockwise as <em>L'</em>
+              and
+              180 degrees is written as <em>L2</em>.
+            </p>
+
+            <p>
+              Throughout the levels the cube will automatically be rotated, so to help you keep track of which face is
+              which, each face is marked with a letter.
+            </p>
+          </div>
+
+          <div>
+            <p>Now, let's get started on that white cross! The goal of this level is to make the cube look like this:
+            </p>
+
+            <img src="resources/cubes/cube1.svg">
+
+            <p>As you can see, the white pieces on top form a cross. Note that in these images, the color of gray pieces
+              don't matter, but when a piece is colored, it does! In this case, notice how the white/red and white/blue
+              edge pieces match up
+              with the center pieces on the sides. This is important.</p>
+
+            <p>Anyway, let's make your first move! Use the buttons to move the white/red edge piece into position. A
+              right
+              counter-clockwise move should do the trick.</p>
+          </div>
+        </div>
+      </dialog>
+
+      <dialog>
+        <div>
+          <h2>Level 2: The white cross</h2>
+          <label>
+            ✖
+            <input type="checkbox" id="modal-2" checked>
+          </label>
+        </div>
+        <div>
+          <div>
+            <p>
+              Welcome to the first level! In this window you will find information guiding you through solving the cube.
+            </p>
+
+            <p> You can close this window at any time using the red cross in the top right corner.
+              Whenever you get stuck, simply press the "Guide" button in the top left corner to open this window again.
+            </p>
+
+            <p>
+              Solving the cube happens layer-by-layer and involves 7 steps. The first step is to create a white cross.
+              Like this:
+            </p>
+
+            <img src="resources/cubes/cube1.svg">
+
+          </div>
+        </div>
+      </dialog>
+
+      <dialog>
+        <div>
+          <h2>Level 3: Level completed!</h2>
+          <label>
+            ✖
+            <input type="checkbox" id="modal-3" checked>
+          </label>
+        </div>
+        <div>
+          <div>
+            <p>
+              Welcome to the first level! In this window you will find information guiding you through solving the cube.
+            </p>
+
+            <p> You can close this window at any time using the red cross in the top right corner.
+              Whenever you get stuck, simply press the "Guide" button in the top left corner to open this window again.
+            </p>
+
+            <p>
+              Solving the cube happens layer-by-layer and involves 7 steps. The first step is to create a white cross.
+              Like this:
+            </p>
+
+            <img src="resources/cubes/cube1.svg">
+
+            <label for="level-2-unlocked"></label>
+
+          </div>
+        </div>
       </dialog>
     </div>
 

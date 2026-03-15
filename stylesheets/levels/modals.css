@@ -1,0 +1,56 @@
+/* Hide the modal overlay by default */
+main>div:nth-of-type(1) {
+    display: none;
+}
+
+/* If any modal is shown, show the modal overlay */
+/* First modal is an edge case */
+main:not(:has(>div:nth-of-type(2)>div:nth-of-type(2)>:nth-child(4)>div label input[required]:checked)):has(dialog:nth-of-type(1) input:checked)>div:nth-of-type(1),
+/* Note                                                              keep counting up                                       Keep counting up + 1*/
+main:has(>div:nth-of-type(2)>div:nth-of-type(2)>:nth-child(4)>div:nth-child(1) label input[required]:checked):has(dialog:nth-of-type(2) input:checked)>div:nth-of-type(1),
+main:has(>div:nth-of-type(2)>div:nth-of-type(2)>:nth-child(4)>div:nth-child(2) label input[required]:checked):has(dialog:nth-of-type(3) input:checked)>div:nth-of-type(1) {
+    display: flex;
+}
+
+/* Each modal can only be visible if a certain step has been achieved AND is not closed */
+
+/* Hide all models by default */
+main>div:nth-of-type(1) dialog {
+    display: none;
+}
+
+/* Correct step has been reached */
+
+/* First modal is an edge case */
+main:not(:has(>div:nth-of-type(2)>div:nth-of-type(2)>:nth-child(4)>div label input[required]:checked)) dialog:nth-of-type(1),
+/* Note:                                                             step to complete                                   model to unlock */
+main:has(>div:nth-of-type(2)>div:nth-of-type(2)>:nth-child(4)>div:nth-child(1) label input[required]:checked) dialog:nth-of-type(2),
+main:has(>div:nth-of-type(2)>div:nth-of-type(2)>:nth-child(4)>div:nth-child(2) label input[required]:checked) dialog:nth-of-type(3) {
+
+    /* Meaning not closed */
+    &:has(input:checked) {
+        display: flex;
+    }
+}
+
+/* Hide all guide buttons by default */
+body>main>aside>div>label {
+    display: none;
+}
+
+/* Show all guide buttons that are reached or must be reached */
+/* Note:                                                                  step to complete - 1                                       guide button to unlock */
+main:not(:has(>div:nth-of-type(2)>div:nth-of-type(2)>:nth-child(4)>div:nth-child(1) label input[required]:checked)) aside>div>label:nth-of-type(1),
+main:not(:has(>div:nth-of-type(2)>div:nth-of-type(2)>:nth-child(4)>div:nth-child(2) label input[required]:checked)) aside>div>label:nth-of-type(2),
+main:not(:has(>div:nth-of-type(2)>div:nth-of-type(2)>:nth-child(4)>div:nth-child(3) label input[required]:checked)) aside>div>label:nth-of-type(3) {
+    display: inline-block;
+}
+
+/* Hide all guide buttons that come after the button that is just reached */
+
+/* Note:                                                                  step to complete - 1                                       guide button to unlock */
+main:not(:has(>div:nth-of-type(2)>div:nth-of-type(2)>:nth-child(4)>div:nth-child(1) label input[required]:checked)) aside>div>label:nth-of-type(1)~label,
+main:not(:has(>div:nth-of-type(2)>div:nth-of-type(2)>:nth-child(4)>div:nth-child(2) label input[required]:checked)) aside>div>label:nth-of-type(2)~label,
+main:not(:has(>div:nth-of-type(2)>div:nth-of-type(2)>:nth-child(4)>div:nth-child(3) label input[required]:checked)) aside>div>label:nth-of-type(3)~label {
+    display: none;
+}

@@ -14,13 +14,13 @@ body>main {
 
   /* Button styling (source: https://www.bypeople.com/css-3d-button/*/
   & label,
-  & details,
   & dialog {
     padding: 8px;
     color: white;
     transition: all 50ms;
     background-color: var(--button-main);
     position: relative;
+    display: inline-block;
 
     &::before,
     &::after {
@@ -67,7 +67,7 @@ body>main {
     }
   }
 
-  /* Sidebar with goal/guide/nav */
+  /* Header with buttons and title */
   &>aside {
     position: absolute;
     margin: 32px 16px;
@@ -79,26 +79,10 @@ body>main {
     /* Fixes styling issue for "back to menu label" */
     & label {
       display: inline-block;
-      color: black
-    }
-
-    /* Back to menu */
-    &>div {
+      color: black;
       --button-main: var(--cube-blue);
       --button-dark: var(--cube-blue-dark);
 
-      /* Fixes styling issue for "back to menu label" */
-      & label {
-        display: inline-block;
-      }
-    }
-
-    /* Goal + Guide */
-    & details {
-      --button-main: var(--primary);
-      --button-dark: var(--primary-dark);
-      padding: 0.5em 1em;
-      color: black;
     }
   }
 
@@ -109,32 +93,145 @@ body>main {
 
     position: absolute;
     height: 100vh;
-    display: flex;
+    width: 100vw;
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    overflow-y: auto;
 
     & dialog {
+      position: relative;
       color: black;
-      width: min(80%, 500px);
+      width: clamp(200px, 90vw, 500px);
       border: none;
       border-radius: 0;
-      /* display: flex; */
       flex-direction: column;
-      align-items: center;
-      padding: 2em;
-      gap: 16px;
-      margin: 16px;
+      line-height: 1.25;
+      background-color: var(--primary);
 
-      &>div {
-        width: 100%;
+      &>div:first-of-type {
+        display: flex;
+        padding: 2em;
+        padding-bottom: 16px;
+        gap: 16px;
+
+        & label {
+          margin-left: auto;
+          --button-main: var(--alert-incorrect);
+          --button-dark: var(--alert-incorrect-dark);
+          width: 16px;
+          height: 16px;
+        }
       }
 
-      &>label {
-        --button-main: var(--background);
-        --button-dark: var(--background-dark);
-        color: black;
+      &>div:not(:first-of-type) {
+
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        padding: 2em;
+        padding-top: 0;
+        gap: 64px;
+
+        scroll-snap-type: x mandatory;
+
+        anchor-name: --my-carousel;
+        scroll-marker-group: after;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        &::scroll-button(*) {
+          border: 0;
+          font-size: 2rem;
+          background: none;
+          color: black;
+          opacity: 0.7;
+          cursor: pointer;
+          position: absolute;
+          position-anchor: --my-carousel;
+        }
+
+        &::scroll-button(*):hover,
+        &::scroll-button(*):focus {
+          opacity: 1;
+        }
+
+        &::scroll-button(*):active {
+          translate: 1px 1px;
+        }
+
+        &::scroll-button(*):disabled {
+          opacity: 0.2;
+          cursor: unset;
+        }
+
+        &::scroll-button(left) {
+          content: "◄" / "Previous";
+          right: calc(anchor(left) - 2em);
+          bottom: calc(anchor(bottom) + 8px);
+        }
+
+        &::scroll-button(right) {
+          content: "►" / "Next";
+          left: calc(anchor(right) - 2em);
+          bottom: calc(anchor(bottom) + 8px);
+        }
+
+        &::scroll-marker-group {
+          position: absolute;
+          position-anchor: --my-carousel;
+          bottom: calc(anchor(bottom) + 20px);
+          justify-self: anchor-center;
+
+          display: flex;
+          justify-content: center;
+          gap: 20px;
+        }
+
+        &>div {
+          flex: 0 0 100%;
+          scroll-snap-align: center;
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 16px;
+          gap: 0.5em;
+
+          &::scroll-marker {
+            content: attr(data-accName);
+            width: 12px;
+            height: 12px;
+            background-color: transparent;
+            border: 2px solid black;
+            border-radius: 50%;
+            overflow: hidden;
+            text-indent: 16px;
+          }
+
+          &::scroll-marker:target-current {
+            background-color: black;
+          }
+        }
+
+        & ul,
+        & ol {
+          padding-left: 1.5em;
+          margin: 1rem 0;
+        }
+
+        & img {
+          width: 30%;
+          height: 30%;
+          align-self: center;
+        }
+
+        & label {
+          margin-top: 1em;
+          --button-main: var(--background);
+          --button-dark: var(--background-dark);
+          color: black;
+        }
       }
     }
   }

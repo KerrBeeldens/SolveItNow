@@ -54,7 +54,7 @@ body>main>div:nth-of-type(2) {
       }
 
       &[style*="--z:-1"]>div:nth-child(2) {
-        background: var(--cube-blue);
+        background: var(--cube-orange);
       }
 
       /* Top faces */
@@ -64,7 +64,7 @@ body>main>div:nth-of-type(2) {
       }
 
       &[style*="--y:-1"]>div:nth-child(3) {
-        background: var(--cube-yellow);
+        background: var(--cube-white);
       }
 
       /* Bottom faces */
@@ -74,7 +74,7 @@ body>main>div:nth-of-type(2) {
       }
 
       &[style*="--y:1"]>div:nth-child(4) {
-        background: var(--cube-green);
+        background: var(--cube-yellow);
       }
 
       /* Right faces */
@@ -84,7 +84,7 @@ body>main>div:nth-of-type(2) {
       }
 
       &[style*="--x:1"]>div:nth-child(5) {
-        background: var(--cube-orange);
+        background: var(--cube-blue);
       }
 
       /* Left faces */
@@ -94,7 +94,7 @@ body>main>div:nth-of-type(2) {
       }
 
       &[style*="--x:-1"]>div:nth-child(6) {
-        background: var(--cube-white);
+        background: var(--cube-green);
       }
 
       /* Show large Letter with orientation on each middle cube */
